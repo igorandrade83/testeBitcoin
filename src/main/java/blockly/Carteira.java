@@ -45,8 +45,7 @@ public static Var ObterInformacoes() throws Exception {
     saldo = Var.valueOf(cronapi.blockchain.BlockchainOperations.getBalance(Var.valueOf(cronapi.io.Operations.fileAppDir().toString() + Var.valueOf("/carteiras").toString()).getTypedObject(java.lang.String.class), cronapi.screen.Operations.getValueOfField(Var.valueOf("vars.inputNomeCarteira")).getTypedObject(java.lang.String.class), Var.valueOf("test").getTypedObject(java.lang.String.class)));
     endereco = Var.valueOf(cronapi.blockchain.BlockchainOperations.getReceiveAddress(Var.valueOf(cronapi.io.Operations.fileAppDir().toString() + Var.valueOf("/carteiras").toString()).getTypedObject(java.lang.String.class), cronapi.screen.Operations.getValueOfField(Var.valueOf("vars.inputNomeCarteira")).getTypedObject(java.lang.String.class), Var.valueOf("test").getTypedObject(java.lang.String.class)));
     cronapi.util.Operations.callClientFunction(Var.valueOf("cronapi.screen.changeValueOfField"), Var.valueOf("vars.inputPublicKey"), endereco);
-    cronapi.util.Operations.callClientFunction(Var.valueOf("cronapi.screen.changeValueOfField"), Var.valueOf("vars.inputSatoshi"), saldo);
-    cronapi.util.Operations.callClientFunction(Var.valueOf("cronapi.screen.changeValueOfField"), Var.valueOf("vars.inputSaldoBTC"), cronapi.math.Operations.divisor(cronapi.conversion.Operations.toDouble(cronapi.conversion.Operations.toString(saldo)),Var.valueOf(100000000)));
+    cronapi.util.Operations.callClientFunction(Var.valueOf("cronapi.screen.changeValueOfField"), Var.valueOf("vars.inputSatoshi"), cronapi.object.Operations.getObjectField(saldo, Var.valueOf("value")));
     return Var.VAR_NULL;
    }
  }.call();
