@@ -35,6 +35,21 @@ public static Var CriarCarteira() throws Exception {
  * @return Var
  */
 // Descreva esta função...
+public static Var EnviarFundos() throws Exception {
+ return new Callable<Var>() {
+
+   public Var call() throws Exception {
+    cronapi.blockchain.BlockchainOperations.sendCoins(Var.valueOf(cronapi.io.Operations.fileAppDir().toString() + Var.valueOf("/carteiras").toString()).getTypedObject(java.lang.String.class), cronapi.screen.Operations.getValueOfField(Var.valueOf("vars.inputNomeCarteira")).getTypedObject(java.lang.String.class), Var.valueOf("test").getTypedObject(java.lang.String.class), cronapi.screen.Operations.getValueOfField(Var.valueOf("vars.inputValorBTC")).getTypedObject(java.lang.String.class), cronapi.screen.Operations.getValueOfField(Var.valueOf("vars.inputKeyCarteiraCreditada")).getTypedObject(java.lang.String.class));
+    return Var.VAR_NULL;
+   }
+ }.call();
+}
+
+/**
+ *
+ * @return Var
+ */
+// Descreva esta função...
 public static Var ObterInformacoes() throws Exception {
  return new Callable<Var>() {
 

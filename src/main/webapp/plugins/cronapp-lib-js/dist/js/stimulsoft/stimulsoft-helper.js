@@ -253,12 +253,14 @@ StimulsoftHelper.prototype.mergeQueryParams = function(linkParameters, queryPara
 
 StimulsoftHelper.prototype.buildQueryString = function(data, returnType) {
   var odataParsed = '';
+  var odataPagination = '';
   var paramsParsed = '';
   var queryString;
 
   if (data.params) {
     paramsParsed = this.parseParams(data.params)
     odataParsed = window.parserOdata(data.expression);
+    odataPagination = this.parserOdataPagination(data.maxRecord);
   }
   else {
     odataParsed = window.parserOdata(data);
@@ -271,11 +273,21 @@ StimulsoftHelper.prototype.buildQueryString = function(data, returnType) {
     else
       queryString = '$filter=' + odataParsed;
   }
+  if (odataPagination.length) {
+    if (queryString.length) {
+      queryString += '&$' + odataPagination;
+    }
+    else {
+      queryString += '&' + odataPagination;
+    }
+  }
 
   if (returnType == 'odata')
     return odataParsed;
-  if (returnType == 'param')
+  else if (returnType == 'param')
     return paramsParsed;
+  else if (returnType == 'odataPagination')
+    return odataPagination;
   else
     return queryString;
 };
@@ -306,6 +318,13 @@ StimulsoftHelper.prototype.parseParamValue = function (value) {
   return result;
 };
 
+StimulsoftHelper.prototype.parserOdataPagination = function (maxRecord) {
+  if (maxRecord !== undefined && maxRecord !== null) {
+    return 'skip=0&$top=' + maxRecord;
+  }
+  return 'skip=0&$top=100';
+};
+
 StimulsoftHelper.prototype.setParamsInFilter = function(dataSources, datasourcesParam) {
   datasourcesParam.forEach(function(datasourceP) {
     var datasource = this.findDatasourceByName(dataSources, datasourceP.name);
@@ -322,6 +341,7 @@ StimulsoftHelper.prototype.setParamsInFilter = function(dataSources, datasources
         linkParametersJson = this.mergeQueryParams(linkParametersJson, datasourceP.queryParams);
         var odata = this.buildQueryString(linkParametersJson, 'odata');
         var param = this.buildQueryString(linkParametersJson, 'param');
+        var odataPagination = this.buildQueryString(linkParametersJson, 'odataPagination');
 
         datasourceP.fieldParams.forEach(function (fp) {
             var paramValueOData = this.adjustParam.bind(this)(fp, 'odata');
@@ -339,6 +359,13 @@ StimulsoftHelper.prototype.setParamsInFilter = function(dataSources, datasources
                 queryString += '&' + odata;
             else
                 queryString = odata;
+        }
+        if (odataPagination.length) {
+            odataPagination = '$' + odataPagination;
+            if (queryString.length)
+                queryString += '&' + odataPagination;
+            else
+                queryString = odataPagination;
         }
 
         this.manageLinkParameters('set', datasource, queryString);
