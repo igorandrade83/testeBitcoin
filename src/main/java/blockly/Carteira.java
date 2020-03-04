@@ -61,6 +61,7 @@ public static Var ObterInformacoes() throws Exception {
     endereco = Var.valueOf(cronapi.blockchain.BlockchainOperations.getReceiveAddress(Var.valueOf(cronapi.io.Operations.fileAppDir().toString() + Var.valueOf("/carteiras").toString()).getTypedObject(java.lang.String.class), cronapi.screen.Operations.getValueOfField(Var.valueOf("vars.inputNomeCarteira")).getTypedObject(java.lang.String.class), Var.valueOf("test").getTypedObject(java.lang.String.class)));
     cronapi.util.Operations.callClientFunction(Var.valueOf("cronapi.screen.changeValueOfField"), Var.valueOf("vars.inputPublicKey"), endereco);
     cronapi.util.Operations.callClientFunction(Var.valueOf("cronapi.screen.changeValueOfField"), Var.valueOf("vars.inputSatoshi"), cronapi.object.Operations.getObjectField(saldo, Var.valueOf("value")));
+    cronapi.util.Operations.callClientFunction(Var.valueOf("cronapi.screen.changeValueOfField"), Var.valueOf("vars.inputSaldotBTC"), cronapi.math.Operations.divisor(cronapi.object.Operations.getObjectField(saldo, Var.valueOf("value")),Var.valueOf(10000000)));
     return Var.VAR_NULL;
    }
  }.call();

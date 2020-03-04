@@ -68,7 +68,7 @@
     <div class="component-holder ng-binding ng-scope col-md-12" data-component="crn-textinput" id="crn-textinput-51971"> 
       <div class="form-group"> 
         <label for="input146994391">Saldo (tBTC)</label> 
-        <input type="text" mask="" mask-placeholder="" ng-required="false" ng-model="vars.inputSaldoBTC" class="form-control k-textbox" id="input146994391" placeholder=""> 
+        <input type="text" mask="" mask-placeholder="" ng-required="false" ng-model="vars.inputSaldotBTC" class="form-control k-textbox" id="input146994391" placeholder=""> 
       </div> 
     </div> 
   </div> 
@@ -141,7 +141,7 @@
               <div class="component-holder ng-binding ng-scope  col-md-9" data-component="crn-button" id="crn-button-718216">
                 <button class="btn btn-default k-button" ng-click="cronapi.callFunction('cronapi.screen.hideModal').call('modalTransferencia')" xattr-fullsize="" xattr-theme="btn-default" xattr-disabled=""><i class="fa fa-close"></i> <span>Fechar</span></button>
               </div><div class="component-holder ng-binding ng-scope  col-md-2" data-component="crn-button" id="crn-button-60861">
-                <button class="btn btn-default k-button" ng-click="" xattr-fullsize="" xattr-theme="btn-default" xattr-disabled=""><i class="glyphicon glyphicon-send"></i> <span>Enviar</span></button>
+                <button class="btn btn-default k-button" ng-click="cronapi.server('blockly.Carteira.EnviarFundos').run()" xattr-fullsize="" xattr-theme="btn-default" xattr-disabled=""><i class="glyphicon glyphicon-send"></i> <span>Enviar</span></button>
               </div>
             </div> 
           </div> 
