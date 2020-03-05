@@ -35,6 +35,36 @@ public static Var CriarCarteira() throws Exception {
  * @return Var
  */
 // Descreva esta função...
+public static Var CriptografarCarteira() throws Exception {
+ return new Callable<Var>() {
+
+   public Var call() throws Exception {
+    cronapi.blockchain.BlockchainOperations.encryptWallet(Var.valueOf(cronapi.io.Operations.fileAppDir().toString() + Var.valueOf("/carteiras").toString()).getTypedObject(java.lang.String.class), cronapi.screen.Operations.getValueOfField(Var.valueOf("vars.inputNomeCarteira")).getTypedObject(java.lang.String.class), Var.valueOf("test").getTypedObject(java.lang.String.class), Var.valueOf("UHDiy78YYHU4h34hçO*#*Y*Dd0893j02d").getTypedObject(java.lang.String.class));
+    return Var.VAR_NULL;
+   }
+ }.call();
+}
+
+/**
+ *
+ * @return Var
+ */
+// Descreva esta função...
+public static Var DescriptografarCarteira() throws Exception {
+ return new Callable<Var>() {
+
+   public Var call() throws Exception {
+    cronapi.blockchain.BlockchainOperations.decryptWallet(Var.valueOf(cronapi.io.Operations.fileAppDir().toString() + Var.valueOf("/carteiras").toString()).getTypedObject(java.lang.String.class), cronapi.screen.Operations.getValueOfField(Var.valueOf("vars.inputNomeCarteira")).getTypedObject(java.lang.String.class), Var.valueOf("test").getTypedObject(java.lang.String.class), Var.valueOf("UHDiy78YYHU4h34hçO*#*Y*Dd0893j02d").getTypedObject(java.lang.String.class));
+    return Var.VAR_NULL;
+   }
+ }.call();
+}
+
+/**
+ *
+ * @return Var
+ */
+// Descreva esta função...
 public static Var EnviarFundos() throws Exception {
  return new Callable<Var>() {
 
